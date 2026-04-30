@@ -102,7 +102,7 @@ class RobotController(Controller):
             if not self.s2_moving:
                 self.s2_moving, self.s2_start_time = True, time.time()
 
-    def on_triangle_press(self):
+    def on_x_press(self):
         if self.is_l2_pressed:
             self.servo1_idx, self.servo2_idx = 1, 1
             print(f"-> Servo: Posisi 2 | S1: {SERVO1_STEPS[1]}°, S2: {SERVO2_STEPS[1]}°")
@@ -148,7 +148,7 @@ def serial_loop(ctrl, teensy):
             
             # Pada pyPS4Controller, up = negatif. Supaya up jadi positif (maju), kita kalikan -ly
             r_val = map_value(rx, -32767, 32767, -current_max_speed, current_max_speed)
-            y_val = map_value(-ly, -32767, 32767, -current_max_speed, current_max_speed)
+            y_val = map_value(ly, -32767, 32767, -current_max_speed, current_max_speed)
             x_val = map_value(lx, -32767, 32767, -current_max_speed, current_max_speed)
 
             # 2. Logika Slider Timer
